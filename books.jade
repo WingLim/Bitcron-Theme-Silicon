@@ -1,0 +1,47 @@
+extends base
+
+block content
+    .book
+        h3 在读
+        ul.reading
+        h3 已读
+        ul.read
+    
+    script
+        $(document).ready(function(){
+            var mydoubanurl = 'https://api.douban.com/v2/book/user/82451512/collections'
+            $.ajax({
+                url: mydoubanurl,
+                type: 'get',
+                dataType: 'jsonp',
+                data: {
+                    status: 'reading'
+                },
+                success: function(data){
+                    var readingbook = data.collections;
+                    for(var i = 0; i < readingbook.length; i++){
+                        var rgtitle = readingbook[i].book.title;
+                        var rgimg = readingbook[i].book.images.small;
+                        var rgurl = readingbook[i].book.alt;
+                        $('.reading').append("<li><a target='_blank' href='" + rgurl + "'>" + "<img src='" + rgimg +"'></img>" + rgtitle + "</a></li>")
+                    }
+                }
+            })
+            $.ajax({
+                url: mydoubanurl,
+                type: 'get',
+                dataType: 'jsonp',
+                data: {
+                    status: 'read'
+                },
+                success: function(data){
+                    var readbook = data.collections;
+                    for(var i = 0; i < readbook.length; i++){
+                        var rbtitle = readbook[i].book.title;
+                        var rbimg = readbook[i].book.images.small;
+                        var rburl = readbook[i].book.alt;
+                        $('.read').append("<li><a target='_blank' href='" + rburl + "'>" + "<img src='" + rbimg +"'></img>" + rbtitle + "</a></li>")
+                    }
+                }
+            })
+        })
