@@ -13,8 +13,8 @@ Code highlight support
 
 ## Useage
 
-Download the zip
+Download the zip and unzip it
 
-Use Bitcron's WebDAV to upload to ```/template```
+Use Bitcron's WebDAV to upload to ```/template```(If the folder doesn't exist, create it)
 
 Bitcron will automatically take effect
