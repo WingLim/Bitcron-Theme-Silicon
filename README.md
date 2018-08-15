@@ -15,6 +15,6 @@ Code highlight support
 
 Download the zip
 
-Use Bitcron's WebDAV to upload to /template
+Use Bitcron's WebDAV to upload to ```/template```
 
 Bitcron will automatically take effect
