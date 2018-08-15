@@ -1,0 +1,27 @@
+extends base
+
+block title
+	title= post.title + " | " + site.title
+
+block content
+  .article-content
+    .meta
+        h1.article-title= post.title
+        .article-date
+          a.extra-switch= post.date.format("%b %d %Y")
+    .markdown.post_content= post.content
+  .tags
+    if post.tags: for tag in post.tags
+			a(href="/tags/{{ tag }}")= tag
+  hr
+  nav.pagination
+    a.article-nav-link-wrap.newer(href=posts.previous_one.url)
+			if posts.pre_one
+				strong.article-nav-caption Newer
+				.article-nav-title= posts.previous_one.title
+		a.article-nav-link-wrap.older(href=posts.next_one.url)
+			if posts.next_one
+				strong.article-nav-caption Older
+				.article-nav-title= posts.next_one.title
+  section#comments
+			+post.comments_as_html()
