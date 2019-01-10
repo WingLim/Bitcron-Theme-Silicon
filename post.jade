@@ -1,5 +1,8 @@
 extends base
 
+block link
+  <base target="_blank">
+
 block title
 	title= post.title + " | " + site.title
 
@@ -25,3 +28,8 @@ block content
 				.article-nav-title= posts.next_one.title
   section#comments
 			+post.comments_as_html()
+  script(src='/template/js/zoom.min.js')
+  script
+    $(document).on('pjax:complete', function() {
+      $.getScript('https://limx.win/fb_static/api/comment/script.js?version=0.0811')
+    })
